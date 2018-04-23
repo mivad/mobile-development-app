@@ -8,6 +8,11 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import com.imd.abastecimentosapp.dao.AppDatabase;
+import com.imd.abastecimentosapp.model.Veiculo;
 
 
 public abstract class BaseActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -29,6 +34,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
     @Override
     protected void onStart() {
         super.onStart();
+        carregaListaVeiculos();
         updateNavigationBarState();
     }
 
@@ -83,10 +89,18 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                 }
             });
         }
-
     }
 
 
+    public void carregaListaVeiculos()
+    {
+        ListView listView = (ListView) findViewById(R.id.veiculosListView);
+        if(listView != null)
+        {
+            ArrayAdapter<Veiculo> adaptador = new ArrayAdapter<Veiculo>(getBaseContext(), android.R.layout.simple_list_item_1, AppDatabase.veiculos);
+            listView.setAdapter(adaptador);
+        }
+    }
 
 
 }
