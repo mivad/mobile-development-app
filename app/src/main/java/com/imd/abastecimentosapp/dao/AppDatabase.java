@@ -28,4 +28,41 @@ public class AppDatabase {
         return veiculos;
     }
 
+    public static Veiculo atualizarVeiculo(Veiculo veiculo)
+    {
+
+        int index = 0;
+        Veiculo encontrado = new Veiculo();
+
+        for(int i = 0; i< veiculos.size(); i++)
+        {
+            encontrado = veiculos.get(i);
+            if(encontrado.getId() == veiculo.getId())
+                index = i;
+        }
+
+        encontrado.setNome(veiculo.getNome());
+        encontrado.setDescricao(veiculo.getDescricaocao());
+        encontrado.setId(veiculo.getId());
+
+        veiculos.remove(index);
+
+        //veiculos.add(encontrado);
+
+        return veiculo;
+    }
+
+    public static Veiculo getVeiculoById(int id)
+    {
+        Veiculo encontrado = new Veiculo();
+
+        for (Veiculo obj: veiculos) {
+
+            if(obj.getId() == id)
+                encontrado = obj;
+        }
+
+        return encontrado;
+    }
+
 }

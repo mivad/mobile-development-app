@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -99,7 +100,30 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         {
             ArrayAdapter<Veiculo> adaptador = new ArrayAdapter<Veiculo>(getBaseContext(), android.R.layout.simple_list_item_1, AppDatabase.veiculos);
             listView.setAdapter(adaptador);
+
+
+            registerForContextMenu(listView);
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapter, View view,
+                                        int position, long id) {
+
+                    Veiculo veiculoSelecionado = AppDatabase.veiculos.get(position);
+
+                    Intent intent = new Intent(getBaseContext(), VeiculoActivity.class);
+
+                    intent.putExtra("id", veiculoSelecionado.getId());
+
+                    startActivity(intent);
+
+                }
+
+            });
+
         }
+
+
     }
 
 
