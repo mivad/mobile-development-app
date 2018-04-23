@@ -1,9 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginTop="15dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+
     tools:context=".VeiculoActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardBackgroundColor="@color/cardview_light_background"
+        card_view:cardMaxElevation="5dp"
+        card_view:cardElevation="4dp"
+        card_view:cardUseCompatPadding="true"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="16dp"
+
+            >
+
+                <TextView
+                    android:id="@+id/lblNome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Nome"
+                    />
+
+                <EditText
+                    android:id="@+id/txtNome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:layout_below="@+id/lblNome"
+                    android:layout_marginBottom="8dp"
+                    android:hint="Ex. Pug 208"
+                    />
+
+
+
+            <TextView
+                android:id="@+id/lblDescricao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Descrição"
+                android:layout_marginTop="16dp"
+                android:layout_below="@+id/txtNome"
+                />
+
+            <EditText
+                android:id="@+id/txtDescricao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:layout_below="@+id/lblDescricao"
+                android:hint="Ex. Peugeot 208 Allure"
+                />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <Button
+        android:id="@+id/btnSalvar"
+        android:layout_marginTop="16dp"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/cardview_compat_inset_shadow"
+        android:layout_gravity="right"
+        android:textColor="#FFFFFF"
+        android:background="@color/colorPrimary"
+        android:text="Salvar" />
+
+</LinearLayout>
