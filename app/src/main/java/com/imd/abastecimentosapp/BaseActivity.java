@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public abstract class BaseActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -19,6 +21,9 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
 
         navigationView = (BottomNavigationView) findViewById(R.id.navigation);
         navigationView.setOnNavigationItemSelectedListener(this);
+
+
+        loadVeiculosActivityComponents();
     }
 
     @Override
@@ -63,6 +68,23 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
     abstract int getContentViewId();
 
     abstract int getNavigationMenuItemId();
+
+
+    public void loadVeiculosActivityComponents()
+    {
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabAdd);
+        if(fab != null) {
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getBaseContext(), VeiculoActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition( R.anim.slide_in, R.anim.slide_out);
+                }
+            });
+        }
+
+    }
 
 }
 

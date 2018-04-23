@@ -6,6 +6,8 @@ public class AbastecimentosActivity extends BaseActivity {
     @Override
     int getContentViewId() {
         getSupportActionBar().setTitle("Abastecimentos");
+
+
         return R.layout.activity_abastecimentos;
     }
 

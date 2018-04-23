@@ -1,7 +1,14 @@
 package com.imd.abastecimentosapp;
 
-public class VeiculosActivity extends BaseActivity {
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 
+public class VeiculosActivity extends BaseActivity {
 
     @Override
     int getContentViewId() {
@@ -13,4 +20,8 @@ public class VeiculosActivity extends BaseActivity {
     int getNavigationMenuItemId() {
         return R.id.navigation_veiculos;
     }
+
+
+
+
 }
