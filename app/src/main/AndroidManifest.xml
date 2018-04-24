@@ -20,7 +20,8 @@
         </activity>
         <activity android:name=".DashboardActivity" />
         <activity android:name=".VeiculosActivity" />
-        <activity android:name=".VeiculoActivity"></activity>
+        <activity android:name=".VeiculoActivity" />
+        <activity android:name=".AbastecimentoActivity"></activity>
     </application>
 
 </manifest>

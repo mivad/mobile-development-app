@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.imd.abastecimentosapp.dao.AppDatabase;
+import com.imd.abastecimentosapp.model.Abastecimento;
 import com.imd.abastecimentosapp.model.Veiculo;
 
 
@@ -31,6 +32,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
 
 
         loadVeiculosActivityComponents();
+        loadAbastecimentosActivityComponents();
     }
 
     @Override
@@ -95,6 +97,21 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(getBaseContext(), VeiculoActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition( R.anim.slide_in, R.anim.slide_out);
+                }
+            });
+        }
+    }
+
+    public void loadAbastecimentosActivityComponents()
+    {
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabAddAbastecimento);
+        if(fab != null) {
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getBaseContext(), AbastecimentoActivity.class);
                     startActivity(intent);
                     overridePendingTransition( R.anim.slide_in, R.anim.slide_out);
                 }
