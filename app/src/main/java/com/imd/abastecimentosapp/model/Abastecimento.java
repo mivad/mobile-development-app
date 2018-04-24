@@ -5,18 +5,18 @@ import com.imd.abastecimentosapp.dao.AppDatabase;
 public class Abastecimento {
 
     private int id;
-    private int veiculoId;
+    private String veiculo;
     private double qtd;
     private double vlrUnidade;
     private double vlrTotal;
     private int quilometragem;
-    private Veiculo veiculo;
 
 
     @Override
     public  String toString()
     {
-        String content = Double.toString(vlrTotal) + " - " + getVeiculo();
+
+        String content = "R$ " + String.format( "%.2f", getVlrTotal() )+ " - " + getVeiculo();
         return content;
     }
 
@@ -29,12 +29,8 @@ public class Abastecimento {
         this.id = id;
     }
 
-    public int getVeiculoId() {
-        return veiculoId;
-    }
-
-    public void setVeiculoId(int veiculoId) {
-        this.veiculoId = veiculoId;
+    public void setVeiculo(String veiculo) {
+        this.veiculo = veiculo;
     }
 
     public double getQtd() {
@@ -54,7 +50,7 @@ public class Abastecimento {
     }
 
     public double getVlrTotal() {
-        return vlrTotal;
+        return vlrUnidade*qtd;
     }
 
     public void setVlrTotal(double vlrTotal) {
@@ -65,8 +61,8 @@ public class Abastecimento {
         return quilometragem;
     }
 
-    public Veiculo getVeiculo() {
-        return AppDatabase.getVeiculoById(veiculoId);
+    public String getVeiculo() {
+        return veiculo;
     }
 
     public void setQuilometragem(int quilometragem) {

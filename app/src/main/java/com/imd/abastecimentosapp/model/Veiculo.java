@@ -35,7 +35,7 @@ public class Veiculo {
     @Override
     public  String toString()
     {
-        String content = Long.toString(id)+ " - " + nome;
+        String content =  nome; //Long.toString(id)+ " - " + nome;
         return content;
     }
 

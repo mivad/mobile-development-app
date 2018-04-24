@@ -1,8 +1,5 @@
 package com.imd.abastecimentosapp;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
@@ -46,16 +43,16 @@ public class VeiculoActivity extends AppCompatActivity {
         });
 
         final Button btnRemover = findViewById(R.id.btnRemover);
-        /*
         btnRemover.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(remover())
                 {
-
+                    Toast toast = Toast.makeText(getBaseContext(), "Registro excluído com sucesso.", Toast.LENGTH_LONG);
+                    toast.show();
                     onBackPressed();
                 }
             }
-        });*/
+        });
 
 
         Intent it = getIntent();
@@ -114,14 +111,6 @@ public class VeiculoActivity extends AppCompatActivity {
         EditText txtDescricao = findViewById(R.id.txtDescricao);
         veiculo.setDescricao(txtDescricao.getText().toString());
 
-
-        for (Veiculo item : AppDatabase.veiculos) {
-            Log.d("item", Integer.toString(item.getId()));
-        }
-
-
-        Log.d("------ID", Integer.toString(id));
-
         if(id == 0) {
             AppDatabase.addVeiculo(veiculo);
         }
@@ -143,8 +132,6 @@ public class VeiculoActivity extends AppCompatActivity {
     public boolean remover()
     {
         AppDatabase.removerVeiculo(id);
-        Toast toast = Toast.makeText(getBaseContext(), "Registro excluído com sucesso.", Toast.LENGTH_LONG);
-        toast.show();
         return true;
     }
 
@@ -161,34 +148,4 @@ public class VeiculoActivity extends AppCompatActivity {
             txtNome.setText(encontrado.getNome());
         }
     }
-
-
-    private Dialog criarAlert() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Deseja realmente remover este Veículo?")
-                .setCancelable(false)
-                .setPositiveButton("Sim",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                remover();
-                                onBackPressed();
-                            }
-                        })
-                .setNegativeButton("Não",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-
-        AlertDialog alert = builder.create();
-
-        return alert;
-    }
-
-
-    public void openRemoverVeiculo(View v) {
-        criarAlert().show();
-    }
-
 }

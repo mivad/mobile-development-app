@@ -39,6 +39,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
     protected void onStart() {
         super.onStart();
         carregaListaVeiculos();
+        carregaListaAbastecimentos();
         updateNavigationBarState();
 
 
@@ -48,6 +49,14 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                 txtNenhum.setVisibility(View.VISIBLE);
             else
                 txtNenhum.setVisibility(View.GONE);
+        }
+
+        final TextView txtNenhumAbastecimento = findViewById(R.id.txtNenhumAbastecimento);
+        if(txtNenhumAbastecimento != null) {
+            if (AppDatabase.abastecimentos.size() == 0)
+                txtNenhumAbastecimento.setVisibility(View.VISIBLE);
+            else
+                txtNenhumAbastecimento.setVisibility(View.GONE);
         }
     }
 
@@ -149,9 +158,20 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
             });
 
         }
-
-
     }
+
+
+    public void carregaListaAbastecimentos()
+    {
+        ListView listView1 = (ListView) findViewById(R.id.abastecimentosListView);
+        if (listView1 != null) {
+            ArrayAdapter<Abastecimento> adaptador = new ArrayAdapter<Abastecimento>(getBaseContext(), android.R.layout.simple_list_item_1, AppDatabase.abastecimentos);
+            listView1.setAdapter(adaptador);
+            registerForContextMenu(listView1);
+        }
+    }
+
+
 
 
 }

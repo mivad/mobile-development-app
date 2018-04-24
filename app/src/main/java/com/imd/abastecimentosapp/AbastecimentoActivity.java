@@ -8,9 +8,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.imd.abastecimentosapp.dao.AppDatabase;
+import com.imd.abastecimentosapp.model.Abastecimento;
 import com.imd.abastecimentosapp.model.Veiculo;
 
 public class AbastecimentoActivity extends AppCompatActivity {
@@ -48,6 +52,19 @@ public class AbastecimentoActivity extends AppCompatActivity {
         AppDatabase.addVeiculo(veiculo);
 
         criarSpinner();
+
+
+        final Button button = findViewById(R.id.btnSalvar);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if(salvar())
+                {
+                    Toast toast = Toast.makeText(getBaseContext(), "Registro salvo com sucesso.", Toast.LENGTH_LONG);
+                    toast.show();
+                    onBackPressed();
+                }
+            }
+        });
     }
 
     @Override
@@ -96,6 +113,58 @@ public class AbastecimentoActivity extends AppCompatActivity {
         spinner.setAdapter(adapter);
         //spinner.setOnItemSelectedListener(_this);
     }
+
+
+    public boolean salvar()
+    {
+
+        Abastecimento abast = new Abastecimento();
+
+        EditText txtVlrUnidade = findViewById(R.id.txtVlrUnidade);
+
+        if(txtVlrUnidade.length() == 0)
+        {
+            Toast toast = Toast.makeText(getBaseContext(), "Preço do Litro é um campo obrigatório.", Toast.LENGTH_LONG);
+            toast.show();
+            return false;
+        }
+        abast.setVlrUnidade(Double.parseDouble(txtVlrUnidade.getText().toString()));
+
+        EditText txtQtdAbastecida = findViewById(R.id.txtQtdAbastecida);
+        if(txtQtdAbastecida != null)
+        {
+            abast.setQtd(Double.parseDouble(txtQtdAbastecida.getText().toString()));
+        }
+
+
+        Spinner mySpinner=(Spinner) findViewById(R.id.spinner);
+        if(mySpinner != null) {
+            String text = mySpinner.getSelectedItem().toString();
+
+            abast.setVeiculo(text);
+        }
+
+
+        if(id == 0) {
+            AppDatabase.addAbastecimento(abast);
+        }
+        else
+        {
+            //veiculo.setId(id);
+            //AppDatabase.atualizarVeiculo(veiculo);
+
+        }
+
+        for (Abastecimento item : AppDatabase.abastecimentos) {
+            Log.d("getId", Integer.toString(item.getId()));
+            Log.d("getQtd", Double.toString(item.getQtd()));
+            Log.d("getVlrUnidade", Double.toString(item.getVlrUnidade()));
+        }
+
+        return true;
+    }
+
+
 
 
 

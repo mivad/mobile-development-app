@@ -3,6 +3,7 @@ package com.imd.abastecimentosapp.dao;
 
 import android.util.Log;
 
+import com.imd.abastecimentosapp.model.Abastecimento;
 import com.imd.abastecimentosapp.model.Veiculo;
 
 import java.util.ArrayList;
@@ -11,7 +12,9 @@ import java.util.Collections;
 public class AppDatabase {
 
 
+
     public static ArrayList<Veiculo> veiculos = new ArrayList<Veiculo>();
+    public static ArrayList<Abastecimento> abastecimentos = new ArrayList<Abastecimento>();
 
     public static ArrayList<Veiculo> addVeiculo(Veiculo obj)
     {
@@ -77,5 +80,28 @@ public class AppDatabase {
                 AppDatabase.veiculos.remove(i);
         }
     }
+
+
+
+
+
+    public static ArrayList<Abastecimento> addAbastecimento(Abastecimento obj)
+    {
+        if(abastecimentos.size() == 0)
+            obj.setId(1);
+        else
+        {
+            Abastecimento last = abastecimentos.get(abastecimentos.size() - 1);
+
+            if(obj.getId() == 0) {
+                int lastId = last.getId() + 1;
+                obj.setId(lastId);
+            }
+        }
+
+        abastecimentos.add(obj);
+        return abastecimentos;
+    }
+
 
 }
