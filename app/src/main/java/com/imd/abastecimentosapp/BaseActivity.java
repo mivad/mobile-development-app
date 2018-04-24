@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.imd.abastecimentosapp.dao.AppDatabase;
 import com.imd.abastecimentosapp.model.Veiculo;
@@ -37,6 +38,15 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
         super.onStart();
         carregaListaVeiculos();
         updateNavigationBarState();
+
+
+        final TextView txtNenhum = findViewById(R.id.txtNenhum);
+        if(txtNenhum != null) {
+            if (AppDatabase.veiculos.size() == 0)
+                txtNenhum.setVisibility(View.VISIBLE);
+            else
+                txtNenhum.setVisibility(View.GONE);
+        }
     }
 
     // Remove inter-activity transition to avoid screen tossing on tapping bottom navigation items

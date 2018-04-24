@@ -16,6 +16,15 @@
         >
 
 
+        <TextView
+            android:id="@+id/txtNenhum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="Nenhum veículo foi cadastrado"
+            />
+
+
         <ListView
             android:id="@+id/veiculosListView"
             android:layout_width="match_parent"
