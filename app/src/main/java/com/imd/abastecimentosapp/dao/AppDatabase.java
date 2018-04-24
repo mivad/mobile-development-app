@@ -19,9 +19,13 @@ public class AppDatabase {
             obj.setId(1);
         else
         {
-           Veiculo last = veiculos.get(veiculos.size()-1);
-           int lastId = last.getId()+1;
-           obj.setId(lastId);
+
+            Veiculo last = veiculos.get(veiculos.size() - 1);
+
+            if(obj.getId() == 0) {
+                int lastId = last.getId() + 1;
+                obj.setId(lastId);
+            }
         }
 
         veiculos.add(obj);
@@ -32,22 +36,18 @@ public class AppDatabase {
     {
 
         int index = 0;
-        Veiculo encontrado = new Veiculo();
+
 
         for(int i = 0; i< veiculos.size(); i++)
         {
-            encontrado = veiculos.get(i);
-            if(encontrado.getId() == veiculo.getId())
+            Veiculo temp = veiculos.get(i);
+            if(temp.getId() == veiculo.getId())
                 index = i;
         }
 
-        encontrado.setNome(veiculo.getNome());
-        encontrado.setDescricao(veiculo.getDescricaocao());
-        encontrado.setId(veiculo.getId());
-
         veiculos.remove(index);
 
-        //veiculos.add(encontrado);
+        veiculos.add(veiculo);
 
         return veiculo;
     }
@@ -63,6 +63,17 @@ public class AppDatabase {
         }
 
         return encontrado;
+    }
+
+
+    public static void removerVeiculo(int id)
+    {
+        for(int i = 0; i< veiculos.size(); i++)
+        {
+            Veiculo temp = veiculos.get(i);
+            if(temp.getId() == id)
+                AppDatabase.veiculos.remove(i);
+        }
     }
 
 }

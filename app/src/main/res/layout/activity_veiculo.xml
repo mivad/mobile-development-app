@@ -96,6 +96,7 @@
         android:layout_gravity="right"
         android:textColor="#FFFFFF"
         android:background="@color/colorAccent"
-        android:text="Remover" />
+        android:text="Remover"
+        android:onClick="openRemoverVeiculo"/>
 
 </LinearLayout>
