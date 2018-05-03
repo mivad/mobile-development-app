@@ -46,11 +46,6 @@ public class AbastecimentoActivity extends AppCompatActivity {
             getSupportActionBar().setTitle("Abastecimento - Cadastro");
         }
 
-        Veiculo veiculo = new Veiculo();
-        veiculo.setNome("Celta");
-        veiculo.setDescricao("Chevrolet Celta 1.0 2012");
-        AppDatabase.addVeiculo(veiculo);
-
         criarSpinner();
 
 

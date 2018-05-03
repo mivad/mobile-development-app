@@ -31,13 +31,11 @@ public class Veiculo {
         this.descricao = descricao;
     }
 
-
     @Override
     public  String toString()
     {
         String content =  nome; //Long.toString(id)+ " - " + nome;
         return content;
     }
-
 
 }
